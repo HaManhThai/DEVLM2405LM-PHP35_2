@@ -1,0 +1,11 @@
+ bootstrap ho tro ca responsive: kh bi crack khi dung tren cac man hinh khac nhau -->
+     class hay dung trong bootstrap:
+     container: cach le hai ben, btn btn-success, btn btn-primary, form-control, form-group, 
+
+     co the hoc bootstrap theo kieu chia: 
+     1. class lien quan den khoi
+     2. class lien quan den form
+     3. class lien quan den table
+     4. class lien quan den panel va label
+      
+     
