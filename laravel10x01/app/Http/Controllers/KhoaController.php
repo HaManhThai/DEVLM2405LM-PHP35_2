@@ -8,59 +8,72 @@ use Illuminate\Support\Facades\DB;
 
 class KhoaController extends Controller
 {
-    // xem dữ liệu 
+    // xem tất cả dữ liệu 
     public function index(){
-        
-        $khoas = DB::select('select * from khoa where 1');
- 
-        return view('khoa.khoa', ['khoas' => $khoas]);
+        $khoas = DB::table('khoa')->get();
+        return view('khoa.index', ['khoas' => $khoas,'kitu' => '']);
     }
 
+    // trở lại trang index
     public function back(){
         return redirect('/khoa');
     }
     
+    // xem chi tiết khoa
     public function detail($MaKH){
-        $khoa = DB::select('select * from khoa where makh = ?',[$MaKH]); 
- 
-        return view('khoa.detail', ['khoa' => $khoa[0]]);
+        $khoa = DB::table('khoa')->where('MaKH',$MaKH)->get()->first();
+        return view('khoa.detail', ['khoa' => $khoa]);
         
     }
 
+    // xoá khoa
     public function delete($MaKH){
-        DB::delete('delete from khoa where makh = ?',[$MaKH]); 
-        return redirect('/khoa'); 
+        DB::table('khoa')->where('MaKH',$MaKH)->delete();
+        return redirect('/khoa')->with('khoa_deleted','Đã xoá thông tin khoa thành công'); 
     }
 
-    // get: Create Form
+    // thêm mới khoa - GET
     public function create()
     {
         return view('khoa.create');
     }
-    // post: Create Form Submit
+
+    // thêm mới khoa - POST
     public function createSubmit(Request $request)
     {
-        // return $request->all();
         $makh = $request->input('makh');
         $tenkh = $request->input('tenkh');
-        $them_khoa = DB::insert('insert into khoa values(?,?)', [$makh,$tenkh]); 
- 
-        return redirect('/khoa');
+        DB::table('khoa')->insert(
+            [
+                'MaKH' => $makh,
+                'TenKH' => $tenkh
+            ]
+        );
+        return redirect('/khoa')->with('khoa_created','Đã thêm khoa mới thành công');
+    }
+
+    // chỉnh sửa khoa - GET
+    public function edit($MaKH){
+        $xem_ban_ghi = DB::table('khoa')->where('MaKH',$MaKH)->get()->first();
+        return view('khoa.edit',['xemBanGhi' => $xem_ban_ghi]);
         
     }
 
-    public function edit($MaKH){
-        $xem_ban_ghi = DB::select('select * from khoa where MaKH = ?',[$MaKH])[0];
-        return view('khoa.edit',['xemBanGhi' => $xem_ban_ghi]);
-        // echo "<pre>";
-        // return print_r($xem_ban_ghi);
-    }
-
+    // chỉnh sửa khoa - POST
     public function editSubmit(Request $request){
         $makh = $request->input('makh');
         $tenkh = $request->input('tenkh');
-        DB::update('UPDATE khoa SET TenKH=? WHERE MaKH=?',[$tenkh,$makh]);
-        return redirect('/khoa');
+        DB::table('khoa')->where('MaKH',$makh)->update(
+            [
+                'TenKH' => $tenkh
+            ]
+        );
+        return redirect('/khoa')->with('khoa_edited','Đã cập nhật thông tin khoa thành công');
     }
     
+    // tìm kiếm tên khoa
+    public function search(Request $request){
+        $khoas = DB::table('khoa')->where('TenKH','like','%'.$request->kitutenkh.'%')->get();
+        return view('khoa.index',['khoas' => $khoas,'kitu' => $request->kitutenkh]);
+    }
 }

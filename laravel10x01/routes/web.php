@@ -64,7 +64,7 @@ Route::post('Login',[FormDNController::class,'storeSession'])->name('storeSessio
 
 
 
-// Route cho bảng khoa (không dùng queryBuilder)
+// Route cho bảng khoa (dùng queryBuilder)
 Route::get('/khoa',[KhoaController::class,'index'])->name('khoa'); // xem
 Route::get('/khoa/back',[KhoaController::class,'back'])->name('khoa.back'); // trở về
 
@@ -76,16 +76,31 @@ Route::get('/khoa/create', [KhoaController::class, 'create'])->name('khoa.create
 Route::post('/khoa/create', [KhoaController::class, 'createSubmit'])->name('khoa.createSubmit'); // thêm
 
 Route::get('/khoa/edit/{MaKH}', [KhoaController::class, 'edit'])->name('khoa.edit'); // Sửa
-
-
 Route::post('/khoa/edit', [KhoaController::class, 'editSubmit'])->name('khoa.editSubmit'); // Sửa
+
+Route::post('/khoa', [KhoaController::class, 'search'])->name('khoa.search'); // Tìm kiếm
+
+
+
 
 // Route cho bảng sinh viên (dùng queryBuilder)
 Route::get('/sinhvien',[SinhVienController::class,'index'])-> name('sinhvien.index'); // xem tất cả
-Route::get('/sinhvien/detail/{mamh}',[SinhVienController::class,'detail'])-> name('sinhvien.detail'); // xem tất cả
+Route::get('/sinhvien/detail/{mamh}',[SinhVienController::class,'detail'])-> name('sinhvien.detail'); // xem chi tiết
+
 Route::get('/sinhvien/back',[SinhVienController::class,'back'])-> name('sinhvien.back'); // trở về
+
 Route::get('/sinhvien/create',[SinhVienController::class,'createGet'])-> name('sinhvien.createGet'); // thêm 
 Route::post('/sinhvien/create',[SinhVienController::class,'createPost'])-> name('sinhvien.createPost'); // thêm 
+
+Route::get('/sinhvien/edit/{masv}',[SinhVienController::class,'editGet'])-> name('sinhvien.editGet'); // sửa  
+Route::post('/sinhvien/edit',[SinhVienController::class,'editPost'])-> name('sinhvien.editPost'); // sửa 
+
+Route::get('/sinhvien/delete/{masv}',[SinhVienController::class,'delete'])-> name('sinhvien.delete'); // xoá
+
+Route::post('/sinhvien',[SinhVienController::class,'search'])-> name('sinhvien.search'); // tìm kiếm 
+
+
+
 
 
 // Route cho bảng môn học (dùng queryBuilder)
@@ -101,7 +116,7 @@ Route::post('/mon-hoc/edit',[MonhocController::class,'editPost'])-> name('monhoc
 
 Route::get('/mon-hoc/delete/{mamh}',[MonhocController::class,'delete'])-> name('monhoc.delete'); // Sửa
 
-Route::post('/mon-hoc/search',[MonhocController::class,'search'])-> name('monhoc.search'); // tìm kiếm
+Route::post('/mon-hoc',[MonhocController::class,'search'])-> name('monhoc.search'); // tìm kiếm
 
 
 

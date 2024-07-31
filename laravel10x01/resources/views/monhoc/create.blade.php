@@ -13,7 +13,7 @@
     <div class="container my-3">
         <div class="card">
             <div class="card-header">
-                <h1>Thêm mới môn học</h1>
+                <h1 class="text-center">Thêm mới môn học</h1>
             </div>
             <div class="card-body">
 

@@ -14,21 +14,30 @@
 
     <div class="container">
         <div class="card">
-            <h2 class="text-center">THÊM KHOA</h2>
+            <div class="card-header">
+                <h2 class="text-center">Thêm khoa</h2>
+            </div>
+            <div class="card-body">
+                <form action="{{ route('khoa.createSubmit') }}" method="POST">
+                    @csrf
+                    <div class="form-group">
+                        <label for="makh">Mã khoa: </label>
+                        <input type="text" name="makh" class="form-control" placeholder="Nhập mã khoa"
+                            id="makh">
+                    </div>
+                    <div class="form-group">
+                        <label for="tenkh">Tên khoa:</label>
+                        <input type="text" name="tenkh" class="form-control" placeholder="Nhập tên khoa"
+                            id="tenkh">
+                    </div>
+            </div>
+            <div class="card-footer">
+                <span><a href="{{ route('khoa.back') }}" class="btn btn-secondary">Trở lại</a></span>
+                <button type="submit" class="btn btn-primary">Thêm mới</button>
+                </form>
+            </div>
         </div>
-        <form action="{{ route('khoa.createSubmit') }}" method="POST">
-            @csrf
-            <div class="form-group">
-                <label for="makh">Mã khoa: </label>
-                <input type="text" name="makh" class="form-control" placeholder="Nhập mã khoa" id="makh">
-            </div>
-            <div class="form-group">
-                <label for="tenkh">Tên khoa:</label>
-                <input type="text" name="tenkh" class="form-control" placeholder="Nhập tên khoa" id="tenkh">
-            </div>
-            <span><a href="{{route('khoa.back')}}" class="btn btn-secondary">Back</a></span>
-            <button type="submit" class="btn btn-primary">Add</button>
-        </form>
+
     </div>
 
 </body>

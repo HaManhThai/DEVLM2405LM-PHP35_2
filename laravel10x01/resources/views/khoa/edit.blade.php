@@ -14,23 +14,31 @@
 
     <div class="container">
         <div class="card">
-            <h2 class="text-center">KHOA EDIT</h2>
+            <div class="card-header">
+                <h2 class="text-center">Chỉnh sửa thông tin khoa có mã khoa <b>{{ $xemBanGhi->MaKH }}</b></h2>
+            </div>
+            <div class="card-body">
+                <form action="{{ route('khoa.editSubmit') }}" method="POST">
+                    @csrf
+                    <div class="form-group">
+                        <label for="makh">Mã khoa: </label>
+                        <input type="text" name="makh" class="form-control" placeholder="Nhập mã khoa"
+                            id="makh" readonly value="{{ $xemBanGhi->MaKH }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="tenkh">Tên khoa: </label>
+                        <input type="text" name="tenkh" class="form-control" placeholder="Nhập tên khoa"
+                            id="tenkh" value="{{ $xemBanGhi->TenKH }}">
+                    </div>
+
+            </div>
+            <div class="card-footer">
+                <span><a href="{{ route('khoa.back') }}" class="btn btn-secondary">Trở lại</a></span>
+                <button type="submit" class="btn btn-primary">Chỉnh sửa</button>
+                </form>
+            </div>
         </div>
-        <form action="{{ route('khoa.editSubmit') }}" method="POST">
-            @csrf
-            <div class="form-group">
-                <label for="makh">Mã khoa: </label>
-                <input type="text" name="makh" class="form-control" placeholder="Nhập mã khoa" id="makh"
-                value="{{$xemBanGhi->MaKH}}">
-            </div>
-            <div class="form-group">
-                <label for="tenkh">Tên khoa: </label>
-                <input type="text" name="tenkh" class="form-control" placeholder="Nhập tên khoa" id="tenkh"
-                value="{{$xemBanGhi->TenKH}}">
-            </div>
-            <span><a href="{{route('khoa.back')}}" class="btn btn-secondary">Back</a></span>
-            <button type="submit" class="btn btn-primary">Edit</button>
-        </form>
+
     </div>
 
 </body>

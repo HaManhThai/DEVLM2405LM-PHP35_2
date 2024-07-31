@@ -13,15 +13,20 @@
 <body>
     <div class="container">
         <div class="card">
-            <h2 class="text-center">Student Detail</h2>
+            <div class="card-header">
+                <h2 class="text-center">Chi tiết thông tin sinh viên <b>{{$student->HoSV}} {{$student->TenSV}}</b></h2>
+            </div>
+            <div class="card-body">
+                <p><b>Mã sinh viên : </b> {{$student->MaSV}}</p>
+                <p><b>Họ sinh viên : </b> {{$student->HoSV}}</p>
+                <p><b>Tên sinh viên : </b> {{$student->TenSV}}</p>
+                <p><b>Ngày sinh : </b> {{$student->NgaySinh}}</p>
+            </div>
+            <div class="card-footer">
+                <p><a href="{{route('sinhvien.back')}}" class="btn btn-secondary">Trở lại</a></p>
+            </div>
         </div>
-        <div class="card">
-            <span><b>Mã sinh viên : </b> {{$student->MaSV}}</span>
-            <span><b>Họ sinh viên : </b> {{$student->HoSV}}</span>
-            <span><b>Tên sinh viên : </b> {{$student->TenSV}}</span>
-            <span><b>Ngày sinh : </b> {{$student->NgaySinh}}</span>
-            <span><a href="{{route('sinhvien.back')}}" class="btn btn-secondary">Back</a></span>
-        </div>
+        
     </div>
 </body>
 

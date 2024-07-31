@@ -16,23 +16,18 @@
     <div class="container my-3">
         <div class="card">
             <div class="card-header">
-                <h1>Danh sách môn học</h2>
-                    <form action="{{ route('monhoc.search') }}" method="POST" class="row gx-3 gy-2 align-items-center">
-                        @csrf
-                        <div class="col-sm-3">
-                            <label class="visually-hidden" for="specificSizeInputGroupUsername">Mã môn học</label>
-                            <div class="input-group">
-                                <div class="input-group-text">Tên môn học</div>
-                                <input type="text" name="tenmh" class="form-control"
-                                    id="specificSizeInputGroupUsername" placeholder="Tên môn học">
-                            </div>
+                <h1 class="text-center">Danh sách môn học</h2>
+                    @if (Session::has('monhoc_created'))
+                        <div class="alert alert-success">
+                            {{ Session::get('monhoc_created') }}
                         </div>
+                    @endif
 
-
-                        <div class="col-auto">
-                            <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+                    @if (Session::has('monhoc_edited'))
+                        <div class="alert alert-success">
+                            {{ Session::get('monhoc_edited') }}
                         </div>
-                    </form>
+                    @endif
 
                     @if (Session::has('monhoc_deleted'))
                         <div class="alert alert-danger">
@@ -41,14 +36,28 @@
                     @endif
             </div>
             <div class="card-body">
+                <form action="{{ route('monhoc.search') }}" method="POST" class="row gx-3 gy-2 align-items-center">
+                    @csrf
+                    <div class="col-sm-3">
+                        <label class="visually-hidden" for="specificSizeInputGroupUsername">Mã môn học</label>
+                        <div class="input-group">
+                            <div class="input-group-text">Tên môn học</div>
+                            <input type="text" name="tenmh" class="form-control"
+                                id="specificSizeInputGroupUsername" placeholder="Tên môn học">
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+                    </div>
+                </form>
                 <table class="table table-bodered">
                     <thead>
                         <tr>
-                            <th>#</th>
-                            <th>Mã môn </th>
-                            <th>Tên môn</th>
-                            <th>Số tiết</th>
-                            <th>Chức năng</th>
+                            <th class="text-center">#</th>
+                            <th class="text-center">Mã môn </th>
+                            <th class="text-center">Tên môn</th>
+                            <th class="text-center">Số tiết</th>
+                            <th class="text-center">Chức năng</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -60,17 +69,17 @@
                                 $stt++;
                             @endphp
                             <tr>
-                                <td>{{ $stt }}</td>
-                                <td>{{ $item->MaMH }}</td>
-                                <td>{{ $item->TenMH }}</td>
-                                <td>{{ $item->Sotiet }}</td>
-                                <td>
+                                <td class="text-center">{{ $stt }}</td>
+                                <td class="text-center">{{ $item->MaMH }}</td>
+                                <td class="text-center">{{ $item->TenMH }}</td>
+                                <td class="text-center">{{ $item->Sotiet }}</td>
+                                <td class="text-center">
                                     <a href="/mon-hoc/detail/{{ $item->MaMH }}" class="btn btn-info">Chi tiết</a>
                                     <a href="/mon-hoc/edit/{{ $item->MaMH }}" class="btn btn-success">
                                         <i class="fa-solid fa-pen-to-square"></i>
                                     </a>
                                     <a href="/mon-hoc/delete/{{ $item->MaMH }}" class="btn btn-danger"
-                                        onclick="return confirm('Bạn có chắc chắn muốn xoá môn học có mã {{ $item->MaMH }} không ?')">
+                                        onclick="return confirm('Bạn có chắc chắn muốn xoá môn học {{ $item->TenMH }} không ?')">
                                         <i class="fa-solid fa-trash"></i>
                                     </a>
                                 </td>

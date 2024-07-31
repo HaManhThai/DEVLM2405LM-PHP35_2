@@ -13,12 +13,16 @@
 <body>
     <div class="container">
         <div class="card">
-            <h2 class="text-center">KHOA Detail</h2>
-        </div>
-        <div class="card">
-            <span><b>Mã Khoa : </b> {{$khoa->MaKH}}</span>
-            <span><b>Tên Khoa : </b> {{$khoa->TenKH}}</span>
-            <span><a href="{{route('khoa.back')}}" class="btn btn-secondary">Back</a></span>
+            <div class="card-header">
+                <h2 class="text-center">Chi tiết thông tin khoa <b>{{ $khoa->TenKH }}</b> </h2>
+            </div>
+            <div class="card-body">
+                <p><b>Mã Khoa : </b> {{ $khoa->MaKH }}</p>
+                <p><b>Tên Khoa : </b> {{ $khoa->TenKH }}</p>
+            </div>
+            <div class="card-footer">
+                <span><a href="{{ route('khoa.back') }}" class="btn btn-secondary">Trở lại</a></span>
+            </div>
         </div>
     </div>
 </body>

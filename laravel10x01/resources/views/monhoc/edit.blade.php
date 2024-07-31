@@ -13,16 +13,9 @@
     <div class="container my-3">
         <div class="card">
             <div class="card-header">
-                <h1>Sửa môn học</h1>
+                <h1 class="text-center">Sửa môn học có mã môn : {{ $monHoc->MaMH }}</h1>
             </div>
             <div class="card-body">
-
-                @if (Session::has('monhoc_edited'))
-                    <div class="alert alert-success">                        
-                            {{Session::get('monhoc_edited')}}                       
-                    </div>
-                @endif
-
                 <form action="{{ route('monhoc.editPost') }}" method="POST">
                     @csrf
                     <div class="form-group">
@@ -46,8 +39,6 @@
                     </div>
                 </form>
             </div>
-
-
         </div>
     </div>
 </body>
