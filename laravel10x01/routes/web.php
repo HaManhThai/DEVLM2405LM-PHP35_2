@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KhoaController;
+use App\Http\Controllers\Khoa1;
 use App\Http\Controllers\SinhVienController;
 use App\Http\Controllers\MonhocController;
 use App\Http\Controllers\FormDKController;
@@ -117,6 +118,25 @@ Route::post('/mon-hoc/edit',[MonhocController::class,'editPost'])-> name('monhoc
 Route::get('/mon-hoc/delete/{mamh}',[MonhocController::class,'delete'])-> name('monhoc.delete'); // Sửa
 
 Route::post('/mon-hoc',[MonhocController::class,'search'])-> name('monhoc.search'); // tìm kiếm
+
+
+# Model cho bảng khoa 
+Route::get('/khoa1',[Khoa1::class,'getAllKhoa'])-> name('khoa.get'); // lấy all
+Route::get('/khoa1/detail/{makh}',[Khoa1::class,'getKhoaByMaKH'])-> name('khoa.detail'); // xem chi tiết
+
+Route::get('/khoa1/back',[Khoa1::class,'back'])-> name('khoa1.back'); // trở lại
+
+Route::get('/khoa1/create',[Khoa1::class,'createKhoaGET'])-> name('khoa.createKhoaGET'); // thêm - GET    
+Route::post('/khoa1/create',[Khoa1::class,'createKhoaPOST'])-> name('khoa.createKhoaPOST'); // thêm - POST
+
+Route::get('/khoa1/edit/{makh}',[Khoa1::class,'editKhoaGET'])-> name('khoa.editKhoaGET'); // sửa - GET    
+Route::post('/khoa1/edit',[Khoa1::class,'editKhoaPOST'])-> name('khoa.editKhoaPOST'); // sửa - POST
+
+Route::get('/khoa1/delete/{makh}',[Khoa1::class,'deleteKhoa'])-> name('khoa.deleteKhoa'); // xoá    
+
+
+
+
 
 
 

@@ -17,12 +17,6 @@
             </div>
             <div class="card-body">
 
-                @if (Session::has('monhoc_created'))
-                    <div class="alert alert-success">                        
-                            {{Session::get('monhoc_created')}}                       
-                    </div>
-                @endif
-
                 <form action="{{ route('monhoc.createPost') }}" method="POST">
                     @csrf
                     <div class="form-group">
