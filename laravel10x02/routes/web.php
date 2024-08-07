@@ -27,4 +27,4 @@ Route::get('/sinhvien/delete/{MaSV}', [SinhvienController::class,'delete'])->nam
 Route::post('/sinhvien', [SinhvienController::class,'search'])->name('sinhvien.search');
 
 
-
+# 

@@ -14,7 +14,7 @@
 <div class="container my-3">
     <div class="card">
         <div class="card-header">
-            <h1 class="text-center">Chỉnh sửa thông tin sinh viên </h1>
+            <h1 class="text-center">Chỉnh sửa thông tin sinh viên có mã sinh viên {{ $sinhvien->MaSV }}</h1>
         </div>
         <div class="card-body">
             <form action="{{ route('sinhvien.editPOST') }}" method="POST">
