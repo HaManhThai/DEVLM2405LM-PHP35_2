@@ -18,7 +18,10 @@ return new class extends Migration
             $table->string('SoDH',4);
             $table->string('Mavtu',4);
             $table->integer('SlDat');
+            
             $table->primary(['SoDH','Mavtu']);
+            $table->foreign('SoDH')->references('SoDH')->on('dondh');
+            $table->foreign('Mavtu')->references('Mavtu')->on('vattu');
         });
     }
 

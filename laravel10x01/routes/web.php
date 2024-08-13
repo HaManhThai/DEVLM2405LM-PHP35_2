@@ -8,6 +8,7 @@ use App\Http\Controllers\MonhocController;
 use App\Http\Controllers\FormDKController;
 use App\Http\Controllers\FormDNController;
 use App\Http\Controllers\SessionController;
+use App\Http\Controllers\PostsController;
 use Illuminate\Http\Request;
 
 
@@ -133,6 +134,28 @@ Route::get('/khoa1/edit/{makh}',[Khoa1::class,'editKhoaGET'])-> name('khoa.editK
 Route::post('/khoa1/edit',[Khoa1::class,'editKhoaPOST'])-> name('khoa.editKhoaPOST'); // sửa - POST
 
 Route::get('/khoa1/delete/{makh}',[Khoa1::class,'deleteKhoa'])-> name('khoa.deleteKhoa'); // xoá    
+
+
+Route::get('/posts', [PostsController::class,'index'])->name('posts.index');
+
+Route::get('/posts/create', [PostsController::class,'createGET'])->name('posts.createGET');
+Route::post('/posts/create', [PostsController::class,'createPOST'])->name('posts.createPOST');
+
+Route::get('/posts/edit/{id}', [PostsController::class,'editGET'])->name('posts.editGET');
+Route::post('/posts/edit/{id}', [PostsController::class,'editPOST'])->name('posts.editPOST');
+
+Route::get('/posts/back', [PostsController::class,'back'])->name('posts.back');
+
+Route::get('/posts/delete/{id}', [PostsController::class,'delete'])->name('posts.delete');
+
+Route::get('/posts/detail/{id}', [PostsController::class,'detail'])->name('posts.detail');
+
+
+
+
+
+
+# UP FILE : move / store
 
 
 

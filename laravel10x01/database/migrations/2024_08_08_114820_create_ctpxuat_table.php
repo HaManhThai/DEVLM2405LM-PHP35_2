@@ -12,15 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('ctpxuat', function (Blueprint $table) {
-            $table->primary(['SoPx','Mavtu']);
 
+
+            $table->string('SoPx',4);
+            $table->string('Mavtu',4);
             $table->integer('SLXuat');
             $table->float('DGXuat');
 
-
-        });
-
-        Schema::table('ctpxuat', function (Blueprint $table) {
+            $table->primary(['SoPx','Mavtu']);
             $table->foreign('Mavtu')->references('Mavtu')->on('vattu');
             $table->foreign('SoPx')->references('SoPx')->on('pxuat');
 
@@ -33,9 +32,9 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('ctpxuat');
-        Schema::table('ctpxuat', function (Blueprint $table) {
-            $table->dropForeign('vattu_Mavtu');
-            $table->dropForeign('pxuat_SoPX');
-        });
+        // Schema::table('ctpxuat', function (Blueprint $table) {
+        //     $table->dropForeign('ctpxuat_vattu_mavtu_foreign');
+        //     $table->dropForeign('ctpxuat_pxuat_sopx_foreign');
+        // });
     }
 };

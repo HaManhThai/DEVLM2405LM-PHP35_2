@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('TongSLN');
             $table->integer('TongSLX');
             $table->integer('SLCuoi');
+            
             $table->primary(['NamThang','Mavtu']);
 
         });
